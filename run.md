@@ -15,4 +15,9 @@ ecs-cli configure --cluster tutorial --default-launch-type FARGATE --config-name
 # IMPORTANT, set env vars for access and secret key 
 ```
 ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY 
+``` 
+
+# create empty fargate cluster with vpc and two subnets 
 ```
+ecs-cli up --cluster-config tutorial
+``` 
