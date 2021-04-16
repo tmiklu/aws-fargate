@@ -35,4 +35,9 @@ aws ec2 authorize-security-group-ingress --group-id sg-01302b1c9c719a4aa --proto
 # deploy docker-compose file to cluster 
 ```
 ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial
+``` 
+
+# clean up
+```
+ecs-cli compose --project-name tutorial service down --cluster-config tutorial
 ```
