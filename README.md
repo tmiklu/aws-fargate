@@ -40,4 +40,5 @@ ecs-cli compose --project-name tutorial service up --create-log-groups --cluster
 # clean up
 ```
 ecs-cli compose --project-name tutorial service down --cluster-config tutorial
+ecs-cli down --force --cluster-config tutorial
 ```
