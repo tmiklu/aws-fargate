@@ -21,3 +21,8 @@ ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET
 ```
 ecs-cli up --cluster-config tutorial
 ``` 
+
+# copy vpc id from previous command 
+```
+aws ec2 describe-security-groups --filters Name=vpc-id,Values=vpc-XXXXXXXXX --region us-east-1
+```
