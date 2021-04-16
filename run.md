@@ -11,3 +11,8 @@ aws iam --region us-west-2 attach-role-policy --role-name ecsTaskExecutionRole -
 ```
 ecs-cli configure --cluster tutorial --default-launch-type FARGATE --config-name tutorial --region us-east-1 
 ```
+
+# IMPORTANT, set env vars for access and secret key 
+```
+ecs-cli configure profile --access-key AWS_ACCESS_KEY_ID --secret-key AWS_SECRET_ACCESS_KEY 
+```
