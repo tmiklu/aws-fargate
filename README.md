@@ -30,4 +30,9 @@ aws ec2 describe-security-groups --filters Name=vpc-id,Values=vpc-XXXXXXXXX --re
 # add ingress rule to security group 
 ```
 aws ec2 authorize-security-group-ingress --group-id sg-01302b1c9c719a4aa --protocol tcp --port 80 --cidr 0.0.0.0/0 --region us-east-1 
+``` 
+
+# deploy docker-compose file to cluster 
+```
+ecs-cli compose --project-name tutorial service up --create-log-groups --cluster-config tutorial
 ```
