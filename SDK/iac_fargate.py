@@ -10,8 +10,7 @@ def create_fargate():
     
     for cluster in get_cluster_name:
         if cluster.split('/')[1] == 'vls-demo-fargate':
-            print('aaa')
-            #raise RuntimeError('cluster exist')
+            raise RuntimeError('cluster exist')
 
     print('Creating cluster vls-demo-fargate')
     response = client.create_cluster(
