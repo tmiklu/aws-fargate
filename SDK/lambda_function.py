@@ -5,9 +5,9 @@ from iac_fargate import create_fargate
 from iac_service import create_service
 from iac_task_definition import create_task
 
+pipeline = boto3.client('codepipeline')
+ssm      = boto3.client('ssm')
 
-def get_lambda_arn(lambda_arn):
-    return lambda_arn
 
 #
 ##
@@ -15,25 +15,26 @@ def get_lambda_arn(lambda_arn):
 ##
 #
 def lambda_handler(event, context):
-
-    lambda_arn = context.invoked_function_arn
-    #print(get_lambda_arn(lambda_arn))
-    #print(create_policy())
+    response = ssm.get_parameters(
+        Names=[
+            'PLATFORM',
+        ],
+        WithDecryption=False
+    )
     
-    ## create cluster
-    create_fargate()
+    if response['Parameters'][0]['Value'] == 'Fargate':
+        create_fargate()
+        create_task()
+        create_service()
     
-    ## create task definition
-    create_task()
+    elif response['Parameters'][0]['Value'] == 'Lambda':
+        print('Deploy to lambda')
     
-    ## create service
-    #create_service()
+    else:
+        print('Not supported AWS compute platform')
+        
     
-    
-    
-    
-    #return {
-    #    'statusCode': 200,
-    #    'body': json.dumps('Hello from Lambda!')
-    #}
-    #if event['Platform'] == 'lambda'
+    response = pipeline.put_job_success_result(
+        jobId=event['CodePipeline.job']['id']
+    )
+    return response
