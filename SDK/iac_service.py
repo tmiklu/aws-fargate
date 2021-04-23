@@ -11,7 +11,7 @@ def create_service():
             ],
             WithDecryption=False
         )
-    for item in response['Parameters'][0]['Value'].split(','):
+    for name in response['Parameters'][0]['Value'].split(','):
         response = client.create_service(
             cluster='vls-demo-fargate',
             serviceName=name,
